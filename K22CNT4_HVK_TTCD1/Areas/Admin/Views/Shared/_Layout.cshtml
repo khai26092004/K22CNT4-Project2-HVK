@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Trang Admin</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @{ var user = Session["User"] as K22CNT4_HVK_TTCD1.Models.NguoiDung; }
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+            <div class="container">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li><a href="/Admin/Cay" class="nav-link">Cây</a></li>
+                        <li><a href="/Admin/NguoiDung" class="nav-link">Người Dùng</a></li>
+                        <li><a href="/Admin/DanhMucCay" class="nav-link">Danh Mục Cây</a></li>
+                        <li>
+                            @{if (user != null)
+                                {
+                                    <a class="dropdown-item mx-3" href="@Url.Action("", "", new { area = "" })">Xin chào @user.Ten</a>
+                                    <a class="dropdown-item" href="@Url.Action("DangXuat", "Home", new { area = "" })">Đăng xuất</a>
+                                }
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+            </footer>
+        </div>
+    }
+
+    <script src="~/Content/ckfinder/ckfinder.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

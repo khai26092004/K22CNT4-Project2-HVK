@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cay">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tencay" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Iddanhmuc" Type="int" Nullable="false" />
+          <Property Name="Soluong" Type="int" Nullable="false" />
+          <Property Name="Dongia" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Hinhanh" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Trangthai" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DanhMucCay">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tendanhmuc" Type="nvarchar" MaxLength="110" Nullable="false" />
+          <Property Name="Trangthai" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GioHang">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Idcay" Type="int" Nullable="false" />
+          <Property Name="Idnguoidung" Type="int" Nullable="false" />
+          <Property Name="soluong" Type="int" Nullable="false" />
+          <Property Name="tonggiatien" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NguoiDung">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="110" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Sdt" Type="int" Nullable="false" />
+          <Property Name="Matkhau" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Trangthai" Type="bit" Nullable="false" />
+          <Property Name="Vaitro" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Cay_DanhMucCay">
+          <End Role="DanhMucCay" Type="Self.DanhMucCay" Multiplicity="1" />
+          <End Role="Cay" Type="Self.Cay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucCay">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cay">
+              <PropertyRef Name="Iddanhmuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GioHang_Cay">
+          <End Role="Cay" Type="Self.Cay" Multiplicity="1" />
+          <End Role="GioHang" Type="Self.GioHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cay">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GioHang">
+              <PropertyRef Name="Idcay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GioHang_NguoiDung">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="GioHang" Type="Self.GioHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GioHang">
+              <PropertyRef Name="Idnguoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Cay" EntityType="Self.Cay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DanhMucCay" EntityType="Self.DanhMucCay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GioHang" EntityType="Self.GioHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NguoiDung" EntityType="Self.NguoiDung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cay_DanhMucCay" Association="Self.FK_Cay_DanhMucCay">
+            <End Role="DanhMucCay" EntitySet="DanhMucCay" />
+            <End Role="Cay" EntitySet="Cay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GioHang_Cay" Association="Self.FK_GioHang_Cay">
+            <End Role="Cay" EntitySet="Cay" />
+            <End Role="GioHang" EntitySet="GioHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GioHang_NguoiDung" Association="Self.FK_GioHang_NguoiDung">
+            <End Role="NguoiDung" EntitySet="NguoiDung" />
+            <End Role="GioHang" EntitySet="GioHang" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cay">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tencay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Iddanhmuc" Type="Int32" Nullable="false" />
+          <Property Name="Soluong" Type="Int32" Nullable="false" />
+          <Property Name="Dongia" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Hinhanh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Trangthai" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DanhMucCay" Relationship="Self.FK_Cay_DanhMucCay" FromRole="Cay" ToRole="DanhMucCay" />
+          <NavigationProperty Name="GioHangs" Relationship="Self.FK_GioHang_Cay" FromRole="Cay" ToRole="GioHang" />
+        </EntityType>
+        <EntityType Name="DanhMucCay">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tendanhmuc" Type="String" MaxLength="110" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Trangthai" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cays" Relationship="Self.FK_Cay_DanhMucCay" FromRole="DanhMucCay" ToRole="Cay" />
+        </EntityType>
+        <EntityType Name="GioHang">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Idcay" Type="Int32" Nullable="false" />
+          <Property Name="Idnguoidung" Type="Int32" Nullable="false" />
+          <Property Name="soluong" Type="Int32" Nullable="false" />
+          <Property Name="tonggiatien" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Cay" Relationship="Self.FK_GioHang_Cay" FromRole="GioHang" ToRole="Cay" />
+          <NavigationProperty Name="NguoiDung" Relationship="Self.FK_GioHang_NguoiDung" FromRole="GioHang" ToRole="NguoiDung" />
+        </EntityType>
+        <EntityType Name="NguoiDung">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="110" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sdt" Type="Int32" Nullable="false" />
+          <Property Name="Matkhau" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Trangthai" Type="Boolean" Nullable="false" DefaultValue="true" />
+          <Property Name="Vaitro" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GioHangs" Relationship="Self.FK_GioHang_NguoiDung" FromRole="NguoiDung" ToRole="GioHang" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Cay_DanhMucCay">
+          <End Role="DanhMucCay" Type="Self.DanhMucCay" Multiplicity="1" />
+          <End Role="Cay" Type="Self.Cay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucCay">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cay">
+              <PropertyRef Name="Iddanhmuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GioHang_Cay">
+          <End Role="Cay" Type="Self.Cay" Multiplicity="1" />
+          <End Role="GioHang" Type="Self.GioHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cay">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GioHang">
+              <PropertyRef Name="Idcay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GioHang_NguoiDung">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="GioHang" Type="Self.GioHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GioHang">
+              <PropertyRef Name="Idnguoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cays" EntityType="Self.Cay" />
+          <EntitySet Name="DanhMucCays" EntityType="Self.DanhMucCay" />
+          <EntitySet Name="GioHangs" EntityType="Self.GioHang" />
+          <EntitySet Name="NguoiDungs" EntityType="Self.NguoiDung" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_Cay_DanhMucCay" Association="Self.FK_Cay_DanhMucCay">
+            <End Role="DanhMucCay" EntitySet="DanhMucCays" />
+            <End Role="Cay" EntitySet="Cays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GioHang_Cay" Association="Self.FK_GioHang_Cay">
+            <End Role="Cay" EntitySet="Cays" />
+            <End Role="GioHang" EntitySet="GioHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GioHang_NguoiDung" Association="Self.FK_GioHang_NguoiDung">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="GioHang" EntitySet="GioHangs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Cays">
+            <EntityTypeMapping TypeName="Model.Cay">
+              <MappingFragment StoreEntitySet="Cay">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tencay" ColumnName="Tencay" />
+                <ScalarProperty Name="Iddanhmuc" ColumnName="Iddanhmuc" />
+                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+                <ScalarProperty Name="Dongia" ColumnName="Dongia" />
+                <ScalarProperty Name="Hinhanh" ColumnName="Hinhanh" />
+                <ScalarProperty Name="Trangthai" ColumnName="Trangthai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DanhMucCays">
+            <EntityTypeMapping TypeName="Model.DanhMucCay">
+              <MappingFragment StoreEntitySet="DanhMucCay">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tendanhmuc" ColumnName="Tendanhmuc" />
+                <ScalarProperty Name="Trangthai" ColumnName="Trangthai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GioHangs">
+            <EntityTypeMapping TypeName="Model.GioHang">
+              <MappingFragment StoreEntitySet="GioHang">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Idcay" ColumnName="Idcay" />
+                <ScalarProperty Name="Idnguoidung" ColumnName="Idnguoidung" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="tonggiatien" ColumnName="tonggiatien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NguoiDungs">
+            <EntityTypeMapping TypeName="Model.NguoiDung">
+              <MappingFragment StoreEntitySet="NguoiDung">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sdt" ColumnName="Sdt" />
+                <ScalarProperty Name="Matkhau" ColumnName="Matkhau" />
+                <ScalarProperty Name="Trangthai" ColumnName="Trangthai" />
+                <ScalarProperty Name="Vaitro" ColumnName="Vaitro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

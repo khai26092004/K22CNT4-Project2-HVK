@@ -1,0 +1,227 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap');
+:root {
+    --Primary-color: #1e773d;
+}
+
+body {
+    background-image: linear-gradient(to bottom left, #75f30b,#416ed5);
+    font-family: "Montserrat", serif;
+}
+
+header {
+    border-bottom: 2px solid var(--Primary-color);
+    
+}
+
+.fh4 {
+    display: block;
+    font-size: 1.2rem;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font-weight: bold;
+    color: var(--Primary-color);
+}
+
+.logo {
+    max-width: 50px;
+}
+/*Top-Slider*/
+.slide {
+    border-radius: 5px;
+}
+
+    .slide img {
+        border-radius: 5px;
+    }
+
+/*Dropdown menu*/
+.nav-link:hover, .dropdown-menu li:hover a,
+.logo:hover,
+.nav-active {
+    border-radius: 5px;
+    color: hsl(145, 48%, 21%) !important;
+}
+/*{
+    display: block;
+    background-color: black;
+    color: #fff !important;
+    border-radius: 5px;
+}*/
+
+.dropdown-menu {
+    position: absolute;
+    display: none;
+    transition: all 0.5s ease;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    font-weight: 500;
+}
+
+.navbar-nav > li > a {
+    color: var(--Primary-color);
+}
+
+/*Search bar*/
+.searchInput {
+    border: 1px solid var(--Primary-color) !important;
+}
+
+    .searchInput:focus {
+        box-shadow: none;
+        outline: none;
+    }
+
+/*icons*/
+.header-icons {
+    height: 100%;
+    text-decoration: none;
+    color: var(--Primary-color);
+    cursor: pointer;
+}
+
+.fa-cart-shopping {
+    position: relative;
+}
+
+.fa-cart-shopping .numBooksInCart {
+    position: absolute;
+    font-size: .7rem;
+    color: #ffffff;
+    width: 1.4em;
+    height: 3.2vh;
+    top: -12px;
+    left: 18px;
+    right: 0;
+    bottom: 0;
+    border-radius: 4rem;
+    background-color: var(--Primary-color);
+    text-align: center;
+    line-height: 3.3vh;
+}
+
+/*Register and Login*/
+.group-log h1 {
+    font-size: 28px;
+    text-align: center;
+    width: 288px;
+    font-weight: 660;
+}
+
+.col-login {
+    display: flex;
+    justify-content: center;
+    margin: 60px;
+    border: solid 1px var(--Primary-color);
+    padding: 34px;
+    background-image: linear-gradient(to bottom right, var(--Primary-color), #1D022222);
+    border-radius: 3px;
+}
+
+.form-group input {
+    height: 40px;
+    border-radius: 4px;
+    line-height: 40px;
+    margin-bottom: 10px;
+    float: left;
+    width: 100%;
+    padding: 0 20px 0 20px;
+    background: #fff;
+    border-color: #ebebeb;
+    font-size: 14px;
+    color: #9e9e9e;
+    box-shadow: none;
+    max-width: none;
+}
+
+.form-group label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    box-sizing: border-box;
+    display: block;
+}
+
+    .form-group label span {
+        color: red;
+    }
+
+.btn-login {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: var(--Primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 0;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+/*news*/
+.item {
+    padding: 17px 0;
+    border-bottom: solid 1px #BBBBBF;
+    width: 360px;
+}
+
+.item_blog_base {
+    display: flex;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+    .item_blog_base .thumb {
+        overflow: hidden;
+        display: block
+    }
+
+        .item_blog_base .thumb img {
+            transition: all 0.5s;
+            max-width: 100%;
+            width: auto;
+            height: 90%;
+            overflow: clip;
+            object-fit: fill;
+        }
+
+.content_blog {
+    padding: 10px 20px 15px;
+    display: block;
+    width: calc(100% - 196px);
+}
+
+    .content_blog h3 {
+        line-height: 1.4;
+        margin-bottom: 20px;
+        overflow: hidden;
+        font-size: 14px;
+        max-height: 57px;
+    }
+
+        .content_blog h3 a {
+            text-decoration: none;
+            color: #000000;
+        }
+
+.r-col {
+    width: 31.33333%;
+}
+
+    .r-col .item:first-child {
+        padding-top: 5px;
+    }
+
+    .r-col .item:last-child {
+        border: none;
+        padding-bottom: 3px;
+    }

@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Cay";
+}
+
+<div class="container">
+    <!-- Swiper -->
+    <div class="title-border">
+        <h2 class="title-module">
+            <a href="/Home/Cay" title="Cây cảnh">Cây</a>
+        </h2>
+
+    </div>
+    <div class="swiper mySwCay">
+        <div class="swiper-wrapper slide-wrap" style="margin-right: -6px; flex-direction: row;">
+
+            @foreach (var item in ViewBag.Caycanh)
+            {
+                <div class="item_product_main swiper-slide">
+                    <form action="/Home/Details/@item.Id" method="post" class="variants">
+                        <div class="thumb">
+                            <a class="image_thumb" href="/Home/Details/@item.Id" title="@item.Tencay">
+                                <img width="199" height="199" src="@item.Hinhanh">
+                            </a>
+                        </div>
+                        <div class="info-product">
+                            <h3 class="product-name"><a href="/Home/Details/@item.Id" title="@item.Tencay">@item.Tencay</a></h3>
+
+                            <div class="price-box">
+                                <span class="price">@item.Dongia.ToString("N0")₫</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="container">
+    <!-- Swiper -->
+    <div class="title-border">
+        <h2 class="title-module">
+            <a href="/Home/Cay" title="Best Seller">Best Seller</a>
+        </h2>
+        <a class="link-more" title="xem thêm" href="/Home/Cay">Xem thêm </a>
+    </div>
+    <div class="swiper mySw">
+        <div class="swiper-wrapper slide-wrap" style="margin-right: -6px;">
+
+            @foreach (var item in ViewBag.Caycanh)
+            {
+                <div class="item_product_main swiper-slide">
+                    <form action="/Home/Details/@item.Id" method="post" class="variants">
+                        <div class="thumb">
+                            <a class="image_thumb" href="/Home/Details/@item.Id" title="@item.Tencay">
+                                <img width="199" height="199" src="@item.Hinhanh">
+                            </a>
+                        </div>
+                        <div class="info-product">
+                            <h3 class="product-name"><a href="/Home/Details/@item.Id" title="@item.Tencay">@item.Tencay</a></h3>
+
+                            <div class="price-box">
+                                <span class="price">@item.Dongia.ToString("N0")₫</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            }
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</div>

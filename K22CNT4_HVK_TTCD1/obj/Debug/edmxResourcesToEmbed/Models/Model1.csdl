@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cay">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tencay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Iddanhmuc" Type="Int32" Nullable="false" />
+    <Property Name="Soluong" Type="Int32" Nullable="false" />
+    <Property Name="Dongia" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Hinhanh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Trangthai" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="DanhMucCay" Relationship="Self.FK_Cay_DanhMucCay" FromRole="Cay" ToRole="DanhMucCay" />
+    <NavigationProperty Name="GioHangs" Relationship="Self.FK_GioHang_Cay" FromRole="Cay" ToRole="GioHang" />
+  </EntityType>
+  <EntityType Name="DanhMucCay">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tendanhmuc" Type="String" MaxLength="110" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Trangthai" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cays" Relationship="Self.FK_Cay_DanhMucCay" FromRole="DanhMucCay" ToRole="Cay" />
+  </EntityType>
+  <EntityType Name="GioHang">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Idcay" Type="Int32" Nullable="false" />
+    <Property Name="Idnguoidung" Type="Int32" Nullable="false" />
+    <Property Name="soluong" Type="Int32" Nullable="false" />
+    <Property Name="tonggiatien" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="Cay" Relationship="Self.FK_GioHang_Cay" FromRole="GioHang" ToRole="Cay" />
+    <NavigationProperty Name="NguoiDung" Relationship="Self.FK_GioHang_NguoiDung" FromRole="GioHang" ToRole="NguoiDung" />
+  </EntityType>
+  <EntityType Name="NguoiDung">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="110" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sdt" Type="Int32" Nullable="false" />
+    <Property Name="Matkhau" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Trangthai" Type="Boolean" Nullable="false" DefaultValue="true" />
+    <Property Name="Vaitro" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="GioHangs" Relationship="Self.FK_GioHang_NguoiDung" FromRole="NguoiDung" ToRole="GioHang" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Cay_DanhMucCay">
+    <End Role="DanhMucCay" Type="Self.DanhMucCay" Multiplicity="1" />
+    <End Role="Cay" Type="Self.Cay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DanhMucCay">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cay">
+        <PropertyRef Name="Iddanhmuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GioHang_Cay">
+    <End Role="Cay" Type="Self.Cay" Multiplicity="1" />
+    <End Role="GioHang" Type="Self.GioHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cay">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GioHang">
+        <PropertyRef Name="Idcay" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GioHang_NguoiDung">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+    <End Role="GioHang" Type="Self.GioHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GioHang">
+        <PropertyRef Name="Idnguoidung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cays" EntityType="Self.Cay" />
+    <EntitySet Name="DanhMucCays" EntityType="Self.DanhMucCay" />
+    <EntitySet Name="GioHangs" EntityType="Self.GioHang" />
+    <EntitySet Name="NguoiDungs" EntityType="Self.NguoiDung" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_Cay_DanhMucCay" Association="Self.FK_Cay_DanhMucCay">
+      <End Role="DanhMucCay" EntitySet="DanhMucCays" />
+      <End Role="Cay" EntitySet="Cays" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GioHang_Cay" Association="Self.FK_GioHang_Cay">
+      <End Role="Cay" EntitySet="Cays" />
+      <End Role="GioHang" EntitySet="GioHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GioHang_NguoiDung" Association="Self.FK_GioHang_NguoiDung">
+      <End Role="NguoiDung" EntitySet="NguoiDungs" />
+      <End Role="GioHang" EntitySet="GioHangs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

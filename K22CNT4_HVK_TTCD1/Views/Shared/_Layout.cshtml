@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Web Bán Cây</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/public/css/header.css" />
+    <link rel="stylesheet" href="~/public/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    
+</head>
+<body>
+    @{ var user = Session["User"] as K22CNT4_HVK_TTCD1.Models.NguoiDung; }
+    <header class="navbar navbar-light bg-white navbar-expand-sm navbar-toggle able-sm">
+        <div class="container">
+            
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-lg-start ">
+                <ul class="navbar-nav flex-grow-1 d-flex justify-content-lg-start fh4">
+                    <li>@Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "nav-link px-3" })</li>
+                    <li>@Html.ActionLink("Tin Tức", "TinTuc", "Home", new { area = "" }, new { @class = "nav-link px-3" })</li>
+                    <li class="dropdown">
+                        @Html.ActionLink("Cây cảnh", "Cay", "Home", new { area = "" }, new { @class = "nav-link px-3" })                   
+                    </li>
+                    <li>@Html.ActionLink("Liên hệ", "LienHe", "Home", new { area = "" }, new { @class = "nav-link px-3" })</li>
+                </ul>
+            </div>
+            <nav class="navbar navbar-light d-flex align-items-center">
+                <div class="container">
+                    <div class="d-flex justify-content-center align-items-center" style="height: 40px">
+                        @{if (user == null)
+                            {
+                                <a class="dropdown-item mx-3" href="@Url.Action("DangNhap", "Home", new { area = "" })">Đăng nhập</a>
+                                <a class="dropdown-item" href="@Url.Action("DangKy", "Home", new { area = "" })">Đăng ký</a>
+                            }
+                            else
+                            {
+                                <a class="dropdown-item mx-3" href="@Url.Action("", "", new { area = "" })">Xin chào @user.Ten</a>
+                                <a class="dropdown-item" href="@Url.Action("DangXuat", "Home", new { area = "" })">Đăng xuất</a>
+                            }
+
+                        }
+
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- end header -->
+   
+    <div class="container body-content">
+        @RenderBody()
+        
+        <hr />
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="tit-footer font22 UTMHelvetIns cl_xanh6 py-4">Web cây cảnh</div>
+                    <ul class="nav flex-column">
+                        <li class="pb-4 nav-item">
+                            <i class="font22 fa fa-home"></i>  <span class="text_foot_color">Văn phòng: Số 5, phố Láng , khu Láng Hạ </span>
+                        </li>
+                        <li class="pb-4 nav-item">
+                            <i class="font22 fa fa-user"></i>  <span class="text_foot_color">Người đại diện: Hoàng Văn Khải </span>
+                        </li>
+                        <li class="pb-4 nav-item">
+                            <i class="font22 fa fa-globe"></i>  <span class="text_foot_color">Mã số thuế: 0424626266622  </span>
+                        </li>
+                        <li class="pb-4 nav-item">
+                            <i class="font22 fa fa-barcode"></i>  <span class="text_foot_color">Hoangvankhai1513@gmail.com</span>
+                        </li>
+                        <li class="pb-4 nav-item">
+                            <i class="font22 fa fa-mobile"></i>  <span class="text_foot_color">Điện thoại: 0123456789 </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <div class="tit-footer font22 UTMHelvetIns cl_xanh6 py-4">Địa chỉ bán buôn bán lẻ</div>
+                    <ul class="nav flex-column">
+                        <li class="pb-4 nav-item">
+                            <span class="text_foot_color mb-3 full bold">Tại Cơ Sở 1</span>
+                            <span class="text_foot_color  full">
+                                Số 6 - Ngõ 20 <br>
+                                láng - Quận Đống Đa - Hà Nội
+                            </span>
+                            <span class="text_foot_color  full">ĐT:0123456789 </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <div class="tit-footer font22 UTMHelvetIns cl_xanh6 py-4">Danh mục</div>
+                    <ul id="nav-footer" class="nav-footer nav-footer list-inline font14">
+                        <li id="menu-item-6432" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-6432"><a href="" aria-current="page">Trang Chủ</a></li>
+                        <li id="menu-item-15621" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15621"><a href="">Chính sách bảo hành</a></li>
+                        <li id="menu-item-15623" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15623"><a href="">Chính sách đổi trả hàng</a></li>
+                        <li id="menu-item-15622" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15622"><a href="">Chính sách bảo mật thông tin</a></li>
+                        <li id="menu-item-6439" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6439"><a href="">Sitemaps</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiperProduct = new Swiper(".mySw", {
+            slidesPerView: 5,
+            spaceBetween: 30,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev"
+            },
+        });
+        var swiperProduct = new Swiper(".mySwCay", {
+            slidesPerView: 4,
+            loop: true,
+            grid: { 
+                rows: 3,
+            },
+            spaceBetween: 20,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },            
+        });
+        var swiperSlide = new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            centeredSlides: true,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev"
+            },
+            on: {
+                autoplayTimeLeft(s, time, progress) {
+                    progressCircle.style.setProperty("--progress", 1 - progress);
+                    progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+                }
+            }
+        });
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<K22CNT4_HVK_TTCD1.Models.Cay>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tencay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Soluong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dongia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hinhanh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Trangthai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DanhMucCay.Tendanhmuc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tencay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soluong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dongia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hinhanh)
+        </td>
+        <td>
+            @if (item.Trangthai == true)
+            {
+                <span style="color: green;">Active</span>
+            }
+            else
+            {
+                <span style="color: red;">Inactive</span>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DanhMucCay.Tendanhmuc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

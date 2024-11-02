@@ -1,0 +1,74 @@
+﻿@model K22CNT4_HVK_TTCD1.Models.Cay
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<main>
+    <div class="container my-5">
+        <div class="row d-flex justify-content-center">
+            <div style="" class="product-detail-left product-images col-12 col-md-12 col-lg-5">
+                <div class="product-image-detail">
+                    <div class="swiper-container gallery-top margin-bottom-10 swiper-container-initialized swiper-container-horizontal swiper-container-free-mode">
+                        <div class="swiper-wrapper" id="lightgallery" aria-live="polite">
+
+                            <a style="display: flex; justify-content: flex-end;" class="swiper-slide swiper-slide-active" data-hash="0" href="@Model.Hinhanh" title="@Model.Tencay" role="group" aria-label="1 / 1" style="margin-right: 10px;">
+                                <img width="204" src="@Model.Hinhanh" class="img-responsive d-block swiper-lazy swiper-lazy-loaded">
+                            </a>
+
+                        </div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                    <div class="swiper-button-main d-none">
+                        
+                        <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-5ed59db8ff2fdc99" aria-disabled="false"><svg class="icon"> <use xlink:href="#previcon"></use> </svg></div>
+                        <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-5ed59db8ff2fdc99" aria-disabled="false"><svg class="icon"> <use xlink:href="#previcon"></use> </svg></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-5 details-pro">
+                <h3 class="title-head">@Model.Tencay</h3>
+
+                <div class="group-action-button">
+                    <div class="group-power">
+                        <div class="price-box clearfix">
+
+                            <span class="special-price">
+                                <span class="price product-price fh4">Giá: @Model.Dongia₫</span>
+                            </span>
+                        </div>
+                    </div>
+                    <form enctype="multipart/form-data" id="add-to-cart-form" data-cart-form="" action="#" method="post" class="wishItem">
+                        <div class="form-product">
+
+                            <div class="box-variant clearfix  d-none ">
+
+                                <input type="hidden" id="one_variant" name="variantId" value="@Model.Id">
+
+                            </div>
+                            <div class="clearfix from-action-addcart my-2">
+                                <div class="qty-ant clearfix custom-btn-number my-2">
+                                    <label class="d-none">Số lượng:</label>
+                                    <div class="custom custom-btn-numbers clearfix input_number_product">
+                                        <button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN(qty) && qty > 1 ) result.value--;return false;" class="btn-minus btn-cts" type="button">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </button>
+                                        <input aria-label="Số lượng" type="text" class="qty input-text" id="qty" name="quantity" size="4" value="1" maxlength="3" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" onchange="if(this.value == 0)this.value=1;">
+                                        <button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN(qty)) result.value++;return false;" class="btn-plus btn-cts" type="button">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <span class="counter-qty mt-2">Còn lại @Model.Soluong trong kho</span>
+                                </div>
+                                <div class="btn-mua">                                  
+                                    <button type="button" class="btn btn-lg btn-gray btn_buy btn-buy-now">Mua ngay</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>                  
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

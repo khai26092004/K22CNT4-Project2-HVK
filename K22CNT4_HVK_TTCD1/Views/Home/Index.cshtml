@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <div class="container">
+        <!-- Swiper -->
+        <div style="width: 54%;" class="my-5 swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img style="width: 100%" height="333" src="https://caycanhhanoi.vn/wp-content/uploads/2023/12/trau-ba-de-vuong-do-1.png"/></div>
+                <div class="swiper-slide"><img style="width: 100%" height="333" src="https://webcaycanh.com/wp-content/uploads/2024/06/xac-dinh-vi-tri-dat-cay.jpg" /></div>
+                <div class="swiper-slide"><img style="width: 100%" height="333" src="https://webcaycanh.com/wp-content/uploads/2024/06/chon-cay-canh-trong-trong-nha.jpg" /></div>
+                <div class="swiper-slide"><img style="width: 100%"height="333" src="https://webcaycanh.com/wp-content/uploads/2017/03/banner-web-cay-canh-2-840x400.jpg" /></div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>          
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Swiper -->
+        <div class="title-border">
+            <h2 class="title-module">
+                <a href="/Home/Cay" title="Cây cảnh">Cây</a>
+            </h2>
+            <a class="link-more" title="xem thêm" href="/Home/Cay">Xem thêm </a>
+        </div>
+        <div class="swiper mySw">
+            <div class="swiper-wrapper slide-wrap" style="margin-right: -6px;">
+
+                @foreach (var item in ViewBag.Caycanh)
+                {
+                    <div class="item_product_main swiper-slide">
+                        <form action="/Home/Details/@item.Id" method="post" class="variants">
+                            <div class="thumb">
+                                <a class="image_thumb" href="/Home/Details/@item.Id" title="@item.Tencay">
+                                    <img width="199" height="199" src="@item.Hinhanh">
+                                </a>                               
+                            </div>
+                            <div class="info-product">
+                                <h3 class="product-name"><a href="/Home/Details/@item.Id" title="@item.Tencay">@item.Tencay</a></h3>
+
+                                <div class="price-box">
+                                    <span class="price">@item.Dongia.ToString("N0")₫</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                }
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    
+
+</main>
