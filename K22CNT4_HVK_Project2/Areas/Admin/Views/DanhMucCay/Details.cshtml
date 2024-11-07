@@ -1,0 +1,35 @@
+﻿@model K22CNT4_HVK_TTCD1.Models.DanhMucCay
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DanhMucCay</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tendanhmuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tendanhmuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Trangthai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trangthai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id, @class = "btn btn-success" })
+    @Html.ActionLink("Back to List", "Index")
+</p>
