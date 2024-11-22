@@ -10,6 +10,9 @@ using K22CNT4_HVK_TTCD1.Models;
 
 namespace K22CNT4_HVK_TTCD1.Areas.Admin.Controllers
 {
+    /// <summary>
+    ///  ĐƯợc tạo ra bới ASP.NET render controller Using entityFramework
+    /// </summary>
     public class NguoiDungController : Controller
     {
         private Entities db = new Entities();

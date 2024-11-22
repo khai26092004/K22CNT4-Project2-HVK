@@ -137,6 +137,7 @@
     <Compile Include="Areas\Admin\Controllers\DanhMucCayController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -844,6 +845,7 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\DangKy.cshtml" />
     <Content Include="Views\Home\DangNhap.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

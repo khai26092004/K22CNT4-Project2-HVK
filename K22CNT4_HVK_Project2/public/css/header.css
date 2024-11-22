@@ -225,3 +225,11 @@ header {
         border: none;
         padding-bottom: 3px;
     }
+
+/*Cart logo*/
+.cart-tree i {
+    font-size: 34px;
+}
+.cartNumb {
+    position: absolute;
+}

@@ -10,6 +10,9 @@ using K22CNT4_HVK_TTCD1.Models;
 
 namespace K22CNT4_HVK_TTCD1.Areas.Admin.Controllers
 {
+    /// <summary>
+    ///      ĐƯợc tạo ra bới ASP.NET render controller Using entityFramework
+    /// </summary>
     public class DanhMucCayController : Controller
     {
         private Entities db = new Entities();
@@ -18,7 +21,7 @@ namespace K22CNT4_HVK_TTCD1.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var user = Session["User"] as K22CNT4_HVK_TTCD1.Models.NguoiDung;
-            if (user != null)
+            if (user != null && user.Vaitro == true)
             {
                 return View(db.DanhMucCays.ToList());
             }

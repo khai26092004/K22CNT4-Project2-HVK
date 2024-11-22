@@ -29,7 +29,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Idcay" Type="int" Nullable="false" />
           <Property Name="Idnguoidung" Type="int" Nullable="false" />
           <Property Name="soluong" Type="int" Nullable="false" />

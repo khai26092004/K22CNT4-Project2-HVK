@@ -11,51 +11,71 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-    
 </head>
 <body>
-    @{ var user = Session["User"] as K22CNT4_HVK_TTCD1.Models.NguoiDung; }
+    @{
+        var user = Session["User"] as K22CNT4_HVK_TTCD1.Models.NguoiDung;
+
+    }
     <header class="navbar navbar-light bg-white navbar-expand-sm navbar-toggle able-sm">
         <div class="container">
-            
+
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-lg-start ">
                 <ul class="navbar-nav flex-grow-1 d-flex justify-content-lg-start fh4">
                     <li>@Html.ActionLink("Trang chủ", "Index", "Home", new { area = "" }, new { @class = "nav-link px-3" })</li>
                     <li>@Html.ActionLink("Tin Tức", "TinTuc", "Home", new { area = "" }, new { @class = "nav-link px-3" })</li>
                     <li class="dropdown">
-                        @Html.ActionLink("Cây cảnh", "Cay", "Home", new { area = "" }, new { @class = "nav-link px-3" })                   
+                        @Html.ActionLink("Cây cảnh", "Cay", "Home", new { area = "" }, new { @class = "nav-link px-3" })
                     </li>
                     <li>@Html.ActionLink("Liên hệ", "LienHe", "Home", new { area = "" }, new { @class = "nav-link px-3" })</li>
                 </ul>
             </div>
             <nav class="navbar navbar-light d-flex align-items-center">
-                <div class="container">
-                    <div class="d-flex justify-content-center align-items-center" style="height: 40px">
-                        @{if (user == null)
-                            {
-                                <a class="dropdown-item mx-3" href="@Url.Action("DangNhap", "Home", new { area = "" })">Đăng nhập</a>
-                                <a class="dropdown-item" href="@Url.Action("DangKy", "Home", new { area = "" })">Đăng ký</a>
+                <div class="row">
+
+                    <div class="container">
+                        <div class="d-flex justify-content-center align-items-center text-center" style="height: 40px">
+                            @{
+
+                                if (user == null)
+                                {
+                                    <a class="dropdown-item mx-3" href="@Url.Action("DangNhap", "Home", new { area = "" })">Đăng nhập</a>
+                                    <a class="dropdown-item" href="@Url.Action("DangKy", "Home", new { area = "" })">Đăng ký</a>
+                                }
+                                else
+                                {
+                                    <div class="text-center">
+                                        <a class="dropdown-item mx-3 cart-tree text-center d-inline" href="/Cart">
+                                            <i class="fa-solid fa-tree"></i>
+                                            @if (Session["CartItemCount"] != null && (int)Session["CartItemCount"] > 0)
+                                            {
+                                                <span class="cart-count">@Session["CartItemCount"]</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="cart-count">0</span>
+                                            }
+                                        </a>
+                                    </div>
+                                    <a class="dropdown-item mx-3" href="@Url.Action("", "", new { area = "" })">Xin chào @user.Ten</a>
+                                    <a class="dropdown-item" href="@Url.Action("DangXuat", "Home", new { area = "" })">Đăng xuất</a>
+                                }
+
                             }
-                            else
-                            {
-                                <a class="dropdown-item mx-3" href="@Url.Action("", "", new { area = "" })">Xin chào @user.Ten</a>
-                                <a class="dropdown-item" href="@Url.Action("DangXuat", "Home", new { area = "" })">Đăng xuất</a>
-                            }
-
-                        }
 
 
+                        </div>
                     </div>
                 </div>
+
             </nav>
         </div>
     </header>
     <!-- end header -->
-   
+
     <div class="container body-content">
         @RenderBody()
-        
+
         <hr />
     </div>
     <footer>
@@ -129,14 +149,14 @@
         var swiperProduct = new Swiper(".mySwCay", {
             slidesPerView: 4,
             loop: true,
-            grid: { 
+            grid: {
                 rows: 3,
             },
             spaceBetween: 20,
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
-            },            
+            },
         });
         var swiperSlide = new Swiper(".mySwiper", {
             spaceBetween: 30,
@@ -161,7 +181,7 @@
                 }
             }
         });
-        
+
     </script>
 </body>
 </html>

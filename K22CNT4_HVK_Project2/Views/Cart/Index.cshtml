@@ -1,0 +1,65 @@
+﻿@model IEnumerable<K22CNT4_HVK_TTCD1.Models.CartItemViewModel>
+
+<div class="container my-4">
+    <div>
+        <h2 class="fh4 my-4">Giỏ hàng</h2>
+    </div>
+    <div id="load_data">
+        <table id="tbl-cart" class="table mb-5">
+            <thead>
+                <tr class="text-center">
+                    <th>STT</th>
+                    <th>Thông tin sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Total</th>
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    var i = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr class="text-center" id="trow_@item.CartItemId">
+                            <td>@(i++)</td>
+                            <td>
+                                <img width="96" height="147" src="@item.ProductImage" />
+                                <a class="fh4" href="/Home/Details/@item.ProductId">@item.ProductName</a>
+                            </td>
+                            <td>@item.Price.ToString("N0")₫</td>
+                            <td>@item.Quantity</td>
+                            <td>@((item.Price * item.Quantity).ToString("N0"))₫</td>
+                            <td class="text-center">
+                                <a href="/Cart/Delete/@item.CartItemId" class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+                    <tr id="ThanhToanCD">
+                        <th colspan="4"></th>
+                        <th class="text-center">
+                            <div>
+                                <h4 class="d-inline">Tổng:</h4>
+                                <span id="totalPay" class="fh4 d-inline">
+                                    @Model.Sum(item => item.TotalPrice).ToString("N0")₫
+                                </span>
+                            </div>
+                           @* <a class="my-2 btn btn-danger" id="btnDeleteAll"
+                               onclick="if(confirm('Bạn có chắc muốn xóa hết sản phẩm trong giỏ hàng?')) { window.location.href = '/Cart/DeleteAll';}">
+                                Xóa hết
+                            </a>*@
+                            <a href="@Url.Action("CheckOut", "Cart", new { area = "" })" class="my-2 btn btn-success">Thanh Toán</a>
+                        </th>
+                    </tr>
+                }
+                else
+                {
+                    <tr id="empty-cart">
+                        <th class="text-center p-5 h3" colspan="5">Không có sản phẩm trong giỏ hàng!!</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

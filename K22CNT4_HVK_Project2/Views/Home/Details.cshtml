@@ -1,4 +1,5 @@
-﻿@model K22CNT4_HVK_TTCD1.Models.Cay
+﻿@*Model được lấy từ return(item) trong controller details và được render xuống cùng với html *@
+@model K22CNT4_HVK_TTCD1.Models.Cay
 
 @{
     ViewBag.Title = "Detail";
@@ -20,7 +21,7 @@
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                     </div>
                     <div class="swiper-button-main d-none">
-                        
+
                         <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-5ed59db8ff2fdc99" aria-disabled="false"><svg class="icon"> <use xlink:href="#previcon"></use> </svg></div>
                         <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-5ed59db8ff2fdc99" aria-disabled="false"><svg class="icon"> <use xlink:href="#previcon"></use> </svg></div>
                     </div>
@@ -38,13 +39,12 @@
                             </span>
                         </div>
                     </div>
-                    <form enctype="multipart/form-data" id="add-to-cart-form" data-cart-form="" action="#" method="post" class="wishItem">
+
+                    @using (Html.BeginForm("Add", "Cart", FormMethod.Post, new { @id = "CartFrm", @class = "wishItem" }))
+                    {
                         <div class="form-product">
-
-                            <div class="box-variant clearfix  d-none ">
-
-                                <input type="hidden" id="one_variant" name="variantId" value="@Model.Id">
-
+                            <div class="box-variant clearfix d-none ">
+                                <input type="text" id="one_variant" name="variantId" value="@Model.Id">
                             </div>
                             <div class="clearfix from-action-addcart my-2">
                                 <div class="qty-ant clearfix custom-btn-number my-2">
@@ -53,20 +53,19 @@
                                         <button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN(qty) && qty > 1 ) result.value--;return false;" class="btn-minus btn-cts" type="button">
                                             <i class="fa-solid fa-minus"></i>
                                         </button>
-                                        <input aria-label="Số lượng" type="text" class="qty input-text" id="qty" name="quantity" size="4" value="1" maxlength="3" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" onchange="if(this.value == 0)this.value=1;">
+                                        <input aria-label="Số lượng" type="text" class="text-center qty input-text" id="qty" name="quantity" size="4" value="1" maxlength="3" onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;" onchange="if(this.value == 0)this.value=1;">
                                         <button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN(qty)) result.value++;return false;" class="btn-plus btn-cts" type="button">
                                             <i class="fa-solid fa-plus"></i>
                                         </button>
                                     </div>
                                     <span class="counter-qty mt-2">Còn lại @Model.Soluong trong kho</span>
                                 </div>
-                                <div class="btn-mua">                                  
-                                    <button type="button" class="btn btn-lg btn-gray btn_buy btn-buy-now">Mua ngay</button>
+                                <div class="btn-mua">
+                                    <button type="submit" class="btn btn-lg btn-gray btn_buy btn-buy-now">Mua ngay</button>
                                 </div>
                             </div>
-
                         </div>
-                    </form>                  
+                    }
                 </div>
             </div>
         </div>
